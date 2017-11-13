@@ -12,7 +12,7 @@ const p2 = path.join(phaserModule, 'build/custom/p2.js');
 const config = {
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'docs'),
         filename: 'bundle.js'
     },
     module: {
