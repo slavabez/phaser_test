@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import star from './assets/star.png';
-import background from './assets/london.jpg';
+import background from './assets/london_overlay.jpg';
 import ground from './assets/platform.png';
 import dude from './assets/dude_leila.png';
 import selfridgesBag from './assets/selfridges-bag.png';
@@ -38,23 +38,23 @@ export default class Game {
         this.platforms = this.phaser.add.group();
         this.platforms.enableBody = true;
 
-        let ground = this.platforms.create(0, this.phaser.world.height - 40, 'ground');
+        let ground = this.platforms.create(0, this.phaser.world.height - 20, 'ground');
         ground.scale.setTo(4, 4);
 
         ground.body.immovable = true;
 
-        let shakeShackLedge = this.platforms.create(-150, 250, 'ground');
+        let shakeShackLedge = this.platforms.create(-150, 340, 'ground');
         shakeShackLedge.body.immovable = true;
 
-        let selfridgesPlatform = this.platforms.create(400, 425, 'ground');
-        selfridgesPlatform.scale.setTo(0.5, 1);
+        let selfridgesPlatform = this.platforms.create(308, 500, 'ground');
+        selfridgesPlatform.scale.setTo(0.75, 1);
         selfridgesPlatform.body.immovable = true;
 
-        let amnestyPlatform = this.platforms.create(600, 600, 'ground');
+        let amnestyPlatform = this.platforms.create(700, 680, 'ground');
+        amnestyPlatform.scale.setTo(0.5, 1);
         amnestyPlatform.body.immovable = true;
 
-        let boxParkPlatform = this.platforms.create(1000, 475, 'ground');
-        boxParkPlatform.scale.setTo(0.75, 1);
+        let boxParkPlatform = this.platforms.create(930, 575, 'ground');
         boxParkPlatform.body.immovable = true;
 
         this.player = this.phaser.add.sprite(32, this.phaser.world.height - 150, 'dude');
@@ -80,20 +80,20 @@ export default class Game {
 
         // Add bags to Selfridges
         for(let i = 0; i < 3; i++) {
-            let bag = this.stars.create(i * 70 + 408, 200, 'bag');
+            let bag = this.stars.create(i * 70 + 365, 200, 'bag');
             bag.body.gravity.y = 60;
             bag.body.bounce.y = 0.3 + i * 0.05;
         }
 
         // Add ice-cream to Box Park
         for(let i = 0; i < 3; i++) {
-            let icecream = this.stars.create(i * 70 + 1050, 200, 'icecream');
+            let icecream = this.stars.create(i * 70 + 1000, 200, 'icecream');
             icecream.body.gravity.y = 60;
             icecream.body.bounce.y = 0.40 + i * 0.05;
         }
 
         this.score = 0;
-        this.scoreText = this.phaser.add.text(16, 16, 'Очки: 0', { fontSize: '32px', fill: '#000' });
+        this.scoreText = this.phaser.add.text(550, 50, 'Points: 0', { fontSize: '52px', fill: '#000' });
 
         console.log('Game created');
     }
@@ -123,8 +123,8 @@ export default class Game {
             this.player.body.velocity.y = -350;
         }
 
-        if (this.score === 120){
-            this.scoreText.text = 'Победа!';
+        if (this.score === 135){
+            this.scoreText.text = 'You win!';
         }
 
     }
@@ -132,7 +132,7 @@ export default class Game {
     collectStar(player, star){
         star.kill();
 
-        this.score += 10;
-        this.scoreText.text = 'Очки: ' + this.score;
+        this.score += 15;
+        this.scoreText.text = 'Points: ' + this.score;
     }
 }
