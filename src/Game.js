@@ -1,13 +1,16 @@
 import Phaser from 'phaser';
 import star from './assets/star.png';
-import sky from './assets/sky.png';
+import background from './assets/london.jpg';
 import ground from './assets/platform.png';
-import dude from './assets/dude.png';
+import dude from './assets/dude_leila.png';
+import selfridgesBag from './assets/selfridges-bag.png';
+import icecream from './assets/icecream.png';
+import burger from './assets/burger.png';
 
 export default class Game {
 
     constructor(){
-        this.phaser = new Phaser.Game(800, 600, Phaser.AUTO, 'game', {
+        this.phaser = new Phaser.Game(1280, 800, Phaser.AUTO, 'game', {
             preload: this.preload.bind(this),
             create: this.create.bind(this),
             update: this.update.bind(this)
@@ -16,8 +19,11 @@ export default class Game {
 
     preload() {
         this.phaser.load.image('star', star);
-        this.phaser.load.image('sky', sky);
+        this.phaser.load.image('bag', selfridgesBag);
+        this.phaser.load.image('background', background);
         this.phaser.load.image('ground', ground);
+        this.phaser.load.image('icecream', icecream);
+        this.phaser.load.image('burger', burger);
         this.phaser.load.spritesheet('dude', dude, 32, 48);
 
 
@@ -27,28 +33,35 @@ export default class Game {
     create() {
 
         this.phaser.physics.startSystem(Phaser.Physics.ARCADE);
-        this.phaser.add.sprite(0,0,'sky');
+        this.phaser.add.sprite(0,0,'background');
 
         this.platforms = this.phaser.add.group();
         this.platforms.enableBody = true;
 
-        let ground = this.platforms.create(0, this.phaser.world.height - 64, 'ground');
-        ground.scale.setTo(2, 2);
+        let ground = this.platforms.create(0, this.phaser.world.height - 40, 'ground');
+        ground.scale.setTo(4, 4);
 
         ground.body.immovable = true;
 
-        let ledge = this.platforms.create(400, 400, 'ground');
-        ledge.body.immovable = true;
+        let shakeShackLedge = this.platforms.create(-150, 250, 'ground');
+        shakeShackLedge.body.immovable = true;
 
-        ledge = this.platforms.create(-150, 250, 'ground');
+        let selfridgesPlatform = this.platforms.create(400, 425, 'ground');
+        selfridgesPlatform.scale.setTo(0.5, 1);
+        selfridgesPlatform.body.immovable = true;
 
-        ledge.body.immovable = true;
+        let amnestyPlatform = this.platforms.create(600, 600, 'ground');
+        amnestyPlatform.body.immovable = true;
+
+        let boxParkPlatform = this.platforms.create(1000, 475, 'ground');
+        boxParkPlatform.scale.setTo(0.75, 1);
+        boxParkPlatform.body.immovable = true;
 
         this.player = this.phaser.add.sprite(32, this.phaser.world.height - 150, 'dude');
 
         this.phaser.physics.arcade.enable(this.player);
 
-        this.player.body.bounce.y = 0.2;
+        this.player.body.bounce.y = 0.1;
         this.player.body.gravity.y = 300;
         this.player.body.collideWorldBounds = true;
 
@@ -58,10 +71,25 @@ export default class Game {
         this.stars = this.phaser.add.group();
         this.stars.enableBody = true;
 
-        for(let i = 0; i < 12; i++) {
-            let star = this.stars.create(i * 70, 0, 'star');
-            star.body.gravity.y = 6;
-            star.body.bounce.y = 0.7 + Math.random() * 0.2;
+        // Add burgers to ShakeShack
+        for(let i = 0; i < 3; i++) {
+            let burger = this.stars.create(i * 70 + 15, 0, 'burger');
+            burger.body.gravity.y = 60;
+            burger.body.bounce.y = 0.2;
+        }
+
+        // Add bags to Selfridges
+        for(let i = 0; i < 3; i++) {
+            let bag = this.stars.create(i * 70 + 408, 200, 'bag');
+            bag.body.gravity.y = 60;
+            bag.body.bounce.y = 0.2;
+        }
+
+        // Add documents to Amnesty & Kings
+        for(let i = 0; i < 3; i++) {
+            let bag = this.stars.create(i * 70 + 408, 200, 'bag');
+            bag.body.gravity.y = 60;
+            bag.body.bounce.y = 0.2;
         }
 
         this.score = 0;
