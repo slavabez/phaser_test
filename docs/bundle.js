@@ -22904,9 +22904,9 @@ var _selfridgesBag = __webpack_require__(14);
 
 var _selfridgesBag2 = _interopRequireDefault(_selfridgesBag);
 
-var _icecream = __webpack_require__(15);
+var _icecream2 = __webpack_require__(15);
 
-var _icecream2 = _interopRequireDefault(_icecream);
+var _icecream3 = _interopRequireDefault(_icecream2);
 
 var _burger2 = __webpack_require__(16);
 
@@ -22934,7 +22934,7 @@ var Game = function () {
             this.phaser.load.image('bag', _selfridgesBag2.default);
             this.phaser.load.image('background', _london2.default);
             this.phaser.load.image('ground', _platform2.default);
-            this.phaser.load.image('icecream', _icecream2.default);
+            this.phaser.load.image('icecream', _icecream3.default);
             this.phaser.load.image('burger', _burger3.default);
             this.phaser.load.spritesheet('dude', _dude_leila2.default, 32, 48);
 
@@ -22987,21 +22987,21 @@ var Game = function () {
             for (var i = 0; i < 3; i++) {
                 var _burger = this.stars.create(i * 70 + 15, 0, 'burger');
                 _burger.body.gravity.y = 60;
-                _burger.body.bounce.y = 0.2;
+                _burger.body.bounce.y = 0.35 + i * 0.05;
             }
 
             // Add bags to Selfridges
             for (var _i = 0; _i < 3; _i++) {
                 var bag = this.stars.create(_i * 70 + 408, 200, 'bag');
                 bag.body.gravity.y = 60;
-                bag.body.bounce.y = 0.2;
+                bag.body.bounce.y = 0.3 + _i * 0.05;
             }
 
-            // Add documents to Amnesty & Kings
+            // Add ice-cream to Box Park
             for (var _i2 = 0; _i2 < 3; _i2++) {
-                var _bag = this.stars.create(_i2 * 70 + 408, 200, 'bag');
-                _bag.body.gravity.y = 60;
-                _bag.body.bounce.y = 0.2;
+                var _icecream = this.stars.create(_i2 * 70 + 1050, 200, 'icecream');
+                _icecream.body.gravity.y = 60;
+                _icecream.body.bounce.y = 0.40 + _i2 * 0.05;
             }
 
             this.score = 0;

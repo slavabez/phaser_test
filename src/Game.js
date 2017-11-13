@@ -75,21 +75,21 @@ export default class Game {
         for(let i = 0; i < 3; i++) {
             let burger = this.stars.create(i * 70 + 15, 0, 'burger');
             burger.body.gravity.y = 60;
-            burger.body.bounce.y = 0.2;
+            burger.body.bounce.y = 0.35 + i * 0.05;
         }
 
         // Add bags to Selfridges
         for(let i = 0; i < 3; i++) {
             let bag = this.stars.create(i * 70 + 408, 200, 'bag');
             bag.body.gravity.y = 60;
-            bag.body.bounce.y = 0.2;
+            bag.body.bounce.y = 0.3 + i * 0.05;
         }
 
-        // Add documents to Amnesty & Kings
+        // Add ice-cream to Box Park
         for(let i = 0; i < 3; i++) {
-            let bag = this.stars.create(i * 70 + 408, 200, 'bag');
-            bag.body.gravity.y = 60;
-            bag.body.bounce.y = 0.2;
+            let icecream = this.stars.create(i * 70 + 1050, 200, 'icecream');
+            icecream.body.gravity.y = 60;
+            icecream.body.bounce.y = 0.40 + i * 0.05;
         }
 
         this.score = 0;
