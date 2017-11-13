@@ -22888,9 +22888,9 @@ var _star = __webpack_require__(10);
 
 var _star2 = _interopRequireDefault(_star);
 
-var _london = __webpack_require__(11);
+var _london_overlay = __webpack_require__(11);
 
-var _london2 = _interopRequireDefault(_london);
+var _london_overlay2 = _interopRequireDefault(_london_overlay);
 
 var _platform = __webpack_require__(12);
 
@@ -22932,7 +22932,7 @@ var Game = function () {
         value: function preload() {
             this.phaser.load.image('star', _star2.default);
             this.phaser.load.image('bag', _selfridgesBag2.default);
-            this.phaser.load.image('background', _london2.default);
+            this.phaser.load.image('background', _london_overlay2.default);
             this.phaser.load.image('ground', _platform2.default);
             this.phaser.load.image('icecream', _icecream3.default);
             this.phaser.load.image('burger', _burger3.default);
@@ -22950,23 +22950,23 @@ var Game = function () {
             this.platforms = this.phaser.add.group();
             this.platforms.enableBody = true;
 
-            var ground = this.platforms.create(0, this.phaser.world.height - 40, 'ground');
+            var ground = this.platforms.create(0, this.phaser.world.height - 20, 'ground');
             ground.scale.setTo(4, 4);
 
             ground.body.immovable = true;
 
-            var shakeShackLedge = this.platforms.create(-150, 250, 'ground');
+            var shakeShackLedge = this.platforms.create(-150, 340, 'ground');
             shakeShackLedge.body.immovable = true;
 
-            var selfridgesPlatform = this.platforms.create(400, 425, 'ground');
-            selfridgesPlatform.scale.setTo(0.5, 1);
+            var selfridgesPlatform = this.platforms.create(308, 500, 'ground');
+            selfridgesPlatform.scale.setTo(0.75, 1);
             selfridgesPlatform.body.immovable = true;
 
-            var amnestyPlatform = this.platforms.create(600, 600, 'ground');
+            var amnestyPlatform = this.platforms.create(700, 680, 'ground');
+            amnestyPlatform.scale.setTo(0.5, 1);
             amnestyPlatform.body.immovable = true;
 
-            var boxParkPlatform = this.platforms.create(1000, 475, 'ground');
-            boxParkPlatform.scale.setTo(0.75, 1);
+            var boxParkPlatform = this.platforms.create(930, 575, 'ground');
             boxParkPlatform.body.immovable = true;
 
             this.player = this.phaser.add.sprite(32, this.phaser.world.height - 150, 'dude');
@@ -22992,20 +22992,20 @@ var Game = function () {
 
             // Add bags to Selfridges
             for (var _i = 0; _i < 3; _i++) {
-                var bag = this.stars.create(_i * 70 + 408, 200, 'bag');
+                var bag = this.stars.create(_i * 70 + 365, 200, 'bag');
                 bag.body.gravity.y = 60;
                 bag.body.bounce.y = 0.3 + _i * 0.05;
             }
 
             // Add ice-cream to Box Park
             for (var _i2 = 0; _i2 < 3; _i2++) {
-                var _icecream = this.stars.create(_i2 * 70 + 1050, 200, 'icecream');
+                var _icecream = this.stars.create(_i2 * 70 + 1000, 200, 'icecream');
                 _icecream.body.gravity.y = 60;
                 _icecream.body.bounce.y = 0.40 + _i2 * 0.05;
             }
 
             this.score = 0;
-            this.scoreText = this.phaser.add.text(16, 16, 'Очки: 0', { fontSize: '32px', fill: '#000' });
+            this.scoreText = this.phaser.add.text(550, 50, 'Points: 0', { fontSize: '52px', fill: '#000' });
 
             console.log('Game created');
         }
@@ -23035,8 +23035,8 @@ var Game = function () {
                 this.player.body.velocity.y = -350;
             }
 
-            if (this.score === 120) {
-                this.scoreText.text = 'Победа!';
+            if (this.score === 135) {
+                this.scoreText.text = 'You win!';
             }
         }
     }, {
@@ -23044,8 +23044,8 @@ var Game = function () {
         value: function collectStar(player, star) {
             star.kill();
 
-            this.score += 10;
-            this.scoreText.text = 'Очки: ' + this.score;
+            this.score += 15;
+            this.scoreText.text = 'Points: ' + this.score;
         }
     }]);
 
@@ -103628,7 +103628,7 @@ module.exports = __webpack_require__.p + "assets/star.png";
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "assets/london.jpg";
+module.exports = __webpack_require__.p + "assets/london_overlay.jpg";
 
 /***/ }),
 /* 12 */
