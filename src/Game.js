@@ -62,7 +62,7 @@ export default class Game {
         this.phaser.physics.arcade.enable(this.player);
 
         this.player.body.bounce.y = 0.1;
-        this.player.body.gravity.y = 300;
+        this.player.body.gravity.y = 600;
         this.player.body.collideWorldBounds = true;
 
         this.player.animations.add('left', [0,1,2,3], 10, true);
@@ -120,11 +120,13 @@ export default class Game {
         }
 
         if (cursors.up.isDown && this.player.body.touching.down && hitPlatform){
-            this.player.body.velocity.y = -350;
+            this.player.body.velocity.y = -500;
         }
 
         if (this.score === 135){
-            this.scoreText.text = 'You win!';
+            // this.scoreText.text = 'You win!';
+            this.scoreText.kill();
+            this.winText = this.phaser.add.text(350, 150, 'You win!', { fontSize: '150px', fill: '#5d0a7e' });
         }
 
     }
